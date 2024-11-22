@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}Danh Sách Sản Phẩm{% endblock %}
+
+{% block content %}
+<div class="product-list">
+    <h2>Danh Sách Sản Phẩm</h2>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <div class="flash-messages">
+      {% for category, message in messages %}
+        <div class="alert alert-{{ category }}">
+          {{ message }}
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+
+<script>
+  setTimeout(function() {
+    const flashMessages = document.querySelector('.flash-messages');
+    if (flashMessages) {
+      flashMessages.style.transition = 'opacity 0.5s ease';
+      flashMessages.style.opacity = '0';
+
+      setTimeout(() => flashMessages.remove(), 500);
+    }
+  }, 5000);
+</script>
+
+    {% if products %}
+        <div class="products-grid">
+            {% for product in products %}
+                <div class="product-card">
+                    <img src="{{ url_for('static', filename=product.image_url) }}" alt="{{ product.name }}" class="product-image">
+                    <h3 class="product-name">{{ product.name }}</h3>
+                    <p class="product-description">{{ product.description }}</p>
+                    <p class="product-price">{{ product.price }}₫</p>
+                    <a href="{{ url_for('add_to_cart', product_id=product.id) }}" class="add-to-cart-btn">Thêm vào giỏ hàng</a>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>Không có sản phẩm nào.</p>
+    {% endif %}
+    
+</div>
+{% endblock %}

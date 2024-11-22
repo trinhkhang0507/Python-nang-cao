@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/login.css') }}">
+</head>
+<body>
+{% extends "base.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<h1>Login</h1>
+<form method="POST">
+    <label for="username">Username:</label>
+    <input type="text" name="username" id="username" required><br>
+    <label for="password">Password:</label>
+    <input type="password" name="password" id="password" required><br>
+    <button type="submit">Login</button>
+    <div class="separator">hoặc đăng nhập bằng</div>
+    <div class="social-login">
+        <button class="google-button">G+ Google</button>
+        <button class="facebook-button">f Facebook</button>
+    </div>
+</form>
+<p>Don't have an account? <a href="{{ url_for('register') }}">Register here</a>.</p>
+{% endblock %}

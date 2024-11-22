@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My Shop{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-right">
+          <a href="{{ url_for('home') }} " class="header-link">Trang chủ</a>
+          <a href="{{ url_for('category', category_name='Chuột') }}" class="header-link">Chuột</a>
+          <a href="{{ url_for('category', category_name='Bàn phím') }}" class="header-link">Bàn phím</a>
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Bạn cần tìm gì?" class="search-input">
+            <button class="search-btn">&#128269;</button>
+        </div>
+
+        <div class="header-right">
+            <a href="#" class="header-link">Hotline<br>1900.1234</a>
+            <a href="{{ url_for('cart') }}" class="header-link">Giỏ hàng</a>
+            <a href="{{ url_for('login') }}" class="header-link">Đăng nhập</a>
+            <a href="{{ url_for('logout') }}" class="header-link">Đăng xuất</a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    <footer class="footer">
+        <div class="container">
+         <div class="row">
+           <div class="footer-col">
+             <h4>company</h4>
+             <ul>
+               <li><a href="#">about us</a></li>
+               <li><a href="#">our services</a></li>
+               <li><a href="#">privacy policy</a></li>
+               <li><a href="#">affiliate program</a></li>
+             </ul>
+           </div>
+           <div class="footer-col">
+             <h4>get help</h4>
+             <ul>
+               <li><a href="#">FAQ</a></li>
+               <li><a href="#">shipping</a></li>
+               <li><a href="#">returns</a></li>
+               <li><a href="#">order status</a></li>
+               <li><a href="#">payment options</a></li>
+             </ul>
+           </div>
+           <div class="footer-col">
+             <h4>online shop</h4>
+             <ul>
+               <li><a href="#">keyboard</a></li>
+               <li><a href="#">mouse</a></li>
+               <li><a href="#">headphone</a></li>
+               <li><a href="#">screen</a></li>
+             </ul>
+           </div>
+           <div class="footer-col">
+             <h4>follow us</h4>
+             <div class="social-links">
+               <a href="#"><i class="fab fa-facebook-f"></i></a>
+               <a href="#"><i class="fab fa-twitter"></i></a>
+               <a href="#"><i class="fab fa-instagram"></i></a>
+               <a href="#"><i class="fab fa-linkedin-in"></i></a>
+             </div>
+           </div>
+         </div>
+        </div>
+     </footer>
+</body>
+</html>

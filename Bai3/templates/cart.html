@@ -1,0 +1,43 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='/css/cart.css') }}">
+{% extends "base.html" %}
+
+{% block title %}Giỏ Hàng{% endblock %}
+
+{% block content %}
+<div class="cart-container">
+    <h2>Giỏ Hàng Của Bạn</h2>
+
+    {% if cart %}
+        <table class="cart-table">
+            <thead>
+                <tr>
+                    <th>Hình ảnh</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Giá</th>
+                    <th>Số lượng</th>
+                    <th>Tổng</th>
+                    <th>Xóa</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in cart %}
+                <tr>
+                    <td><img src="{{ url_for('static', filename=item.image_url) }}" alt="{{ item.name }}" class="product-image"></td>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.price }}₫</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>{{ item.price * item.quantity }}₫</td>
+                    <td><a href="{{ url_for('remove_from_cart', product_id=item.id) }}" class="remove-btn">Xóa</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="cart-total">
+            <h3>Tổng tiền: {{ total_price }}₫</h3>
+            <a href="{{ url_for('checkout') }}" class="checkout-btn">Thanh toán</a>
+        </div>
+    {% else %}
+        <p>Giỏ hàng của bạn đang trống.</p>
+    {% endif %}
+</div>
+{% endblock %}
